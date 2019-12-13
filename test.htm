@@ -1,0 +1,52 @@
+<script type="text/javascript" src="./Promise.js"></script>
+<script>
+
+	/*getA().then(function(data) {
+		return 1;
+	}).then(function(data){
+		return 2;
+	}).catch(function(err){
+		debugger
+	});*/
+
+	Promise.all([
+		aaa(),
+		bbb(),
+	]).then(function(result){
+		debugger
+	}).catch(function(err){
+		debugger
+	});
+
+	function aaa() {
+		var dtd = Deferred();
+
+		setTimeout(function() {
+			dtd.resolve('a');
+		},2000);
+
+		return dtd;
+	}
+
+	function bbb() {
+		return new Promise((resolve, reject) => {
+		    setTimeout(function(){
+		    	resolve('b');
+		    },1000);
+		})
+	}
+	
+	function getA() {
+		var dtd = Deferred();
+
+		setTimeout(function() {
+			dtd.resolve(0);
+		}, 2000);
+
+		setTimeout(function() {
+			dtd.reject(0);
+		}, 2000);
+
+		return dtd;
+	}
+</script>
